@@ -140,7 +140,7 @@ static void for_host (string host)
 	}
 
 	double duration = top_time - bottom_time;
-	if (! (1.0 < duration && duration < 60 * 60 * 24 * 265)) {
+	if (! (1.0 < duration && duration < 60 * 60 * 24 * 365)) {
 		throw (HostException {});
 	}
 
@@ -157,7 +157,7 @@ static void for_host (string host)
 	
 	for (auto user: occupancy) {
 		double toot_par_day = static_cast <double> (60 * 60 * 24) * static_cast <double> (user.second) / duration;
-		cout << toot_par_day << " " << user.first << "@" << host << endl;
+		cout << toot_par_day << " https://" << host << "/@" << user.first << endl;
 	}
 }
 
