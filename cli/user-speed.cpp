@@ -3,6 +3,7 @@
 #include <tinyxml2.h>
 #include <curl/curl.h>
 #include <iostream>
+#include <map>
 #include "picojson.h"
 
 
@@ -84,9 +85,29 @@ static time_t get_time (const picojson::value &toot)
 }
 
 
-static string get_user_id (const picojson::value &toot)
+static string get_username (const picojson::value &toot)
 {
-	return string {};
+	if (! toot.is <picojson::object> ()) {
+		throw (TootException {});
+	}
+	auto properties = toot.get <picojson::object> ();
+	if (properties.find (string {"account"}) == properties.end ()) {
+		throw (TootException {});
+	}
+	auto account = properties.at (string {"account"});
+	if (! account.is <picojson::object> ()) {
+		throw (TootException {});
+	}
+	auto account_map = account.get <picojson::object> ();
+	if (account_map.find (string {"username"}) == account_map.end ()) {
+		throw (TootException {});
+	}
+	auto username = account_map.at (string {"username"});
+	if (! username.is <string> ()) {
+		throw (TootException {});
+	}
+	auto username_s = username.get <string> ();
+	return username_s;
 }
 
 
@@ -106,6 +127,7 @@ static void for_host (string host)
 	if (toots.size () != 40) {
 		throw (HostException {});
 	}
+
 	const picojson::value &top_toot = toots.at (0);
 	const picojson::value &bottom_toot = toots.at (toots.size () - 1);
 	time_t top_time;
@@ -116,7 +138,27 @@ static void for_host (string host)
 	} catch (TootException e) {
 		throw (HostException {});
 	}
-	cout << host << " " << top_time - bottom_time << endl;
+
+	double duration = top_time - bottom_time;
+	if (! (1.0 < duration && duration < 60 * 60 * 24 * 265)) {
+		throw (HostException {});
+	}
+
+	map <string, unsigned int> occupancy;
+
+	for (auto toot: toots) {
+		string username = get_username (toot);
+		if (occupancy.find (username) == occupancy.end ()) {
+			occupancy.insert (pair <string, unsigned int> (username, 1));
+		} else {
+			occupancy.at (username) ++;
+		}
+	}
+	
+	for (auto user: occupancy) {
+		double toot_par_day = static_cast <double> (60 * 60 * 24) * static_cast <double> (user.second) / duration;
+		cout << toot_par_day << " " << user.first << "@" << host << endl;
+	}
 }
 
 
