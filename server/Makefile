@@ -15,8 +15,12 @@ MKDIR = mkdir
 RMDIR = rmdir
 CHMOD = chmod
 
+cgidir = /usr/lib/cgi-bin
+
 objects = user-speed.o
-binaries = distsn-user-speed
+cgi_binaries = distsn-top1000.cgi
+cron_binaries = distsn-user-speed 
+binaries = $(cgi_binaries) $(cron_binaries)
 
 .SUFFIXES: .cpp .o
 
@@ -28,12 +32,15 @@ all: $(binaries)
 distsn-user-speed: user-speed.o
 	$(CXX) user-speed.o -lcurl $(CFLAGS) -o $@
 
-install: $(scripts)
-	$(INSTALL_PROGRAM) $(binaries) --target-directory=$(cgidir)
+distsn-top1000.cgi: top1000.o
+	$(CXX) top1000.o -lcurl $(CFLAGS) -o $@
+
+install: $(cgi_binaries)
+	$(INSTALL_PROGRAM) $(cgi_binaries) --target-directory=$(cgidir)
 
 uninstall:
 	-$(RM) /var/lib/distsn/user-speed/*
-	-$(RM) $(addprefix $(cgidir)/,$(binaries))
+	-$(RM) $(addprefix $(cgidir)/,$(cgi_binaries))
 
 intialize:
 	$(MKDIR) -p /var/lib/distsn/user-speed
@@ -45,7 +52,8 @@ refresh:
 clean:
 	-$(RM) $(objects) $(binaries)
 
-run: $(binaries)
-	./distsn-user-speed
+activate-cgi:
+	a2enmod cgi
+	service apache2 restart
 
 

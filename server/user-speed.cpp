@@ -1,6 +1,5 @@
 #include <cstdio>
 #include <cstdlib>
-#include <tinyxml2.h>
 #include <curl/curl.h>
 #include <iostream>
 #include <map>
@@ -9,7 +8,6 @@
 
 
 using namespace std;
-using namespace tinyxml2;
 
 
 static int writer (char * data, size_t size, size_t nmemb, std::string * writerData)
