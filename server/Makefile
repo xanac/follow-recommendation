@@ -18,7 +18,7 @@ CHMOD = chmod
 cgidir = /usr/lib/cgi-bin
 
 objects = user-speed.o
-cgi_binaries = distsn-top1000.cgi
+cgi_binaries = distsn-top1000.cgi distsn-top1000-html.cgi
 cron_binaries = distsn-user-speed 
 binaries = $(cgi_binaries) $(cron_binaries)
 
@@ -34,6 +34,9 @@ distsn-user-speed: user-speed.o
 
 distsn-top1000.cgi: top1000.o
 	$(CXX) top1000.o -lcurl $(CFLAGS) -o $@
+
+distsn-top1000-html.cgi: top1000-html.o
+	$(CXX) top1000-html.o -lcurl $(CFLAGS) -o $@
 
 install: $(cgi_binaries)
 	$(INSTALL_PROGRAM) $(cgi_binaries) --target-directory=$(cgidir)
