@@ -151,6 +151,32 @@ static void write_storage (FILE *out, map <string, double> memo)
 
 static void for_host (string host)
 {
+	/* Apply forgetting rate to memo. */
+	const string storage_filename = string {"/var/lib/distsn/user-speed/"} + host;
+	map <string, double> memo;
+
+	FILE * storage_file_in = fopen (storage_filename.c_str (), "r");
+	if (storage_file_in != nullptr) {
+		memo = read_storage (storage_file_in);
+		fclose (storage_file_in);
+	}
+
+	const double forgetting_rate = 0.125;
+
+	for (auto &user_memo: memo) {
+		user_memo.second *= (1.0 - forgetting_rate);
+	}
+
+	/* Save memo. */
+	{
+		FILE * storage_file_out = fopen (storage_filename.c_str (), "w");
+		if (storage_file_out != nullptr) {
+			write_storage (storage_file_out, memo);
+			fclose (storage_file_out);
+		}
+	}
+
+	/* Get timeline. */
 	string reply_1 = http_get (string {"https://"} + host + string {"/api/v1/timelines/public?local=true&limit=40"});
 
 	picojson::value json_value;
@@ -193,21 +219,7 @@ static void for_host (string host)
 		}
 	}
 	
-	const string storage_filename = string {"/var/lib/distsn/user-speed/"} + host;
-	map <string, double> memo;
-
-	FILE * storage_file_in = fopen (storage_filename.c_str (), "r");
-	if (storage_file_in != nullptr) {
-		memo = read_storage (storage_file_in);
-		fclose (storage_file_in);
-	}
-
-	const double forgetting_rate = 0.125;
-
-	for (auto &user_memo: memo) {
-		user_memo.second *= (1.0 - forgetting_rate);
-	}
-	
+	/* Update memo. */
 	for (auto user_occupancy: occupancy) {
 		double speed = static_cast <double> (user_occupancy.second) / duration;
 		auto user_memo = memo.find (user_occupancy.first);
@@ -218,10 +230,13 @@ static void for_host (string host)
 		}
 	}
 	
-	FILE * storage_file_out = fopen (storage_filename.c_str (), "w");
-	if (storage_file_out != nullptr) {
-		write_storage (storage_file_out, memo);
-		fclose (storage_file_out);
+	/* Save memo again. */
+	{
+		FILE * storage_file_out = fopen (storage_filename.c_str (), "w");
+		if (storage_file_out != nullptr) {
+			write_storage (storage_file_out, memo);
+			fclose (storage_file_out);
+		}
 	}
 }
 
