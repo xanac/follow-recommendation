@@ -103,6 +103,11 @@ oransns.com
 kemonodon.club
 audiophile-mastodon.com
 
+# 巨大インスタンスを再取得する。
+pawoo.net
+mstdn.jp
+friends.nico
+
 # k52.org 新着 2017年6月5日から7月8日
 # リストは古いものが上です。
 
@@ -157,7 +162,7 @@ siege.rhino.cards
 yamastodon.com
 mstd.tokyo
 
-# 巨大インスタンスは最後に再取得する。
+# 巨大インスタンスを再取得する。
 pawoo.net
 mstdn.jp
 friends.nico
