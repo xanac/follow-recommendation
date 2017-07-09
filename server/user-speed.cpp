@@ -236,11 +236,11 @@ static bool valid_host_name (string host)
 
 int main (int argc, char **argv)
 {
-	string hosts_s = http_get (string {""});
+	string hosts_s = http_get (string {"https://raw.githubusercontent.com/distsn/follow-recommendation/master/hosts.txt"});
 	vector <string>	hosts;
 	string host;
 	for (char c: hosts_s) {
-		if (c == "\n") {
+		if (c == '\n') {
 			if (valid_host_name (host)) {
 				hosts.push_back (host);
 			}

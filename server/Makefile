@@ -46,6 +46,6 @@ clean:
 	-$(RM) $(objects) $(binaries)
 
 run: $(binaries)
-	./distsn-user-speed hosts.txt
+	./distsn-user-speed
 
 
