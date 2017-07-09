@@ -4,6 +4,7 @@
 #include <curl/curl.h>
 #include <iostream>
 #include <map>
+#include <vector>
 #include "picojson.h"
 
 
@@ -227,36 +228,41 @@ static void for_host (string host)
 }
 
 
+static bool valid_host_name (string host)
+{
+	return 0 < host.size () && host.at (0) != '#';
+}
+
+
 int main (int argc, char **argv)
 {
-	if (1 < argc) {
-		FILE *in = fopen (argv [1], "r");
-		if (in == nullptr) {
-			cerr << "File " << argv [1] << "is not found." << endl;
-			exit (1);
-		}
-		char host [1024];
-		for (; ; ) {
-			if (feof (in)) {
-				break;
+	string hosts_s = http_get (string {""});
+	vector <string>	hosts;
+	string host;
+	for (char c: hosts_s) {
+		if (c == "\n") {
+			if (valid_host_name (host)) {
+				hosts.push_back (host);
 			}
-			fgets (host, 1024, in);
-			if (0 < strlen (host) && host [0] != '#' && host [0] != '\n') {
-				if (host [strlen (host) - 1] == '\n') {
-					host [strlen (host) - 1] = '\0';
-				}
-				try {
-					for_host (string {host});
-				} catch (HttpException e) {
-					/* Nothing. */
-				} catch (HostException e) {
-					/* Nothing. */
-				}
-			}
+			host.clear ();
+		} else {
+			host.push_back (c);
 		}
-	} else {
-		cout << "distsn-user-speed hosts.txt" << endl;
 	}
+	if (valid_host_name (host)) {
+		hosts.push_back (host);
+	}
+
+	for (auto host: hosts) {
+		try {
+			for_host (string {host});
+		} catch (HttpException e) {
+			/* Nothing. */
+		} catch (HostException e) {
+			/* Nothing. */
+		}
+	}
+
 	return 0;
 }
 

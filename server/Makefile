@@ -26,16 +26,18 @@ binaries = distsn-user-speed
 all: $(binaries)
 
 distsn-user-speed: user-speed.o
-	$(CXX) user-speed.o -ltinyxml2 -lcurl $(CFLAGS) -o $@
+	$(CXX) user-speed.o -lcurl $(CFLAGS) -o $@
 
 install: $(scripts)
-	$(MKDIR) -p /var/lib/distsn/user-speed
-	$(CHMOD) -R a+rwx /var/lib/distsn
 	$(INSTALL_PROGRAM) $(binaries) --target-directory=$(cgidir)
 
 uninstall:
 	-$(RM) /var/lib/distsn/user-speed/*
 	-$(RM) $(addprefix $(cgidir)/,$(binaries))
+
+intialize:
+	$(MKDIR) -p /var/lib/distsn/user-speed
+	$(CHMOD) -R a+rwx /var/lib/distsn
 
 refresh:
 	-$(RM) /var/lib/distsn/user-speed/*
