@@ -13,6 +13,7 @@ INSTALL_PROGRAM = $(INSTALL) -m a=rx
 INSTALL_DATA = $(INSTALL) -m a=r
 MKDIR = mkdir
 RMDIR = rmdir
+CHMOD = chmod
 
 objects = user-speed.o
 binaries = distsn-user-speed
@@ -28,10 +29,16 @@ distsn-user-speed: user-speed.o
 	$(CXX) user-speed.o -ltinyxml2 -lcurl $(CFLAGS) -o $@
 
 install: $(scripts)
+	$(MKDIR) -p /var/lib/distsn/user-speed
+	$(CHMOD) -R a+rwx /var/lib/distsn
 	$(INSTALL_PROGRAM) $(binaries) --target-directory=$(cgidir)
 
 uninstall:
+	-$(RM) /var/lib/distsn/user-speed/*
 	-$(RM) $(addprefix $(cgidir)/,$(binaries))
+
+refresh:
+	-$(RM) /var/lib/distsn/user-speed/*
 
 clean:
 	-$(RM) $(objects) $(binaries)

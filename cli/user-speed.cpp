@@ -111,6 +111,45 @@ static string get_username (const picojson::value &toot)
 }
 
 
+static map <string, double> read_storage (FILE *in)
+{
+	string s;
+	for (; ; ) {
+		if (feof (in)) {
+			break;
+		}
+		char b [1024];
+		fgets (b, 1024, in);
+		s += string {b};
+	}
+	picojson::value json_value;
+	picojson::parse (json_value, s);
+	auto object = json_value.get <picojson::object> ();
+	
+	map <string, double> memo;
+	
+	for (auto user: object) {
+		string username = user.first;
+		double speed = user.second.get <double> ();
+		memo.insert (pair <string, double> (username, speed));
+	}
+	
+	return memo;
+}
+
+
+static void write_storage (FILE *out, map <string, double> memo)
+{
+	fprintf (out, "{");
+	for (auto user: memo) {
+		string username = user.first;
+		double speed = user.second;
+		fprintf (out, "\"%s\":%e,", username.c_str (), speed);
+	}
+	fprintf (out, "}");
+}
+
+
 static void for_host (string host)
 {
 	string reply_1 = http_get (string {"https://"} + host + string {"/api/v1/timelines/public?local=true&limit=40"});
@@ -155,9 +194,35 @@ static void for_host (string host)
 		}
 	}
 	
-	for (auto user: occupancy) {
-		double toot_par_day = static_cast <double> (60 * 60 * 24) * static_cast <double> (user.second) / duration;
-		cout << toot_par_day << " https://" << host << "/@" << user.first << endl;
+	const string storage_filename = string {"/var/lib/distsn/user-speed/"} + host;
+	map <string, double> memo;
+
+	FILE * storage_file_in = fopen (storage_filename.c_str (), "r");
+	if (storage_file_in != nullptr) {
+		memo = read_storage (storage_file_in);
+		fclose (storage_file_in);
+	}
+
+	const double forgetting_rate = 0.125;
+
+	for (auto user_memo: memo) {
+		user_memo.second *= (1.0 - forgetting_rate);
+	}
+	
+	for (auto user_occupancy: occupancy) {
+		double speed = static_cast <double> (user_occupancy.second) / duration;
+		auto user_memo = memo.find (user_occupancy.first);
+		if (user_memo == memo.end ()) {
+			memo.insert (pair <string, double> (user_occupancy.first, speed));
+		} else {
+			memo.at (user_occupancy.first) += forgetting_rate * speed;
+		}
+	}
+	
+	FILE * storage_file_out = fopen (storage_filename.c_str (), "w");
+	if (storage_file_out != nullptr) {
+		write_storage (storage_file_out, memo);
+		fclose (storage_file_out);
 	}
 }
 
