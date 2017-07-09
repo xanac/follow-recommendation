@@ -204,7 +204,7 @@ static void for_host (string host)
 
 	const double forgetting_rate = 0.125;
 
-	for (auto user_memo: memo) {
+	for (auto &user_memo: memo) {
 		user_memo.second *= (1.0 - forgetting_rate);
 	}
 	

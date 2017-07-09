@@ -1,4 +1,4 @@
-.PHONY: all clean install uninstall run
+.PHONY: all clean install uninstall initialize refresh
 
 srcdir = .
 
@@ -45,7 +45,7 @@ uninstall:
 	-$(RM) /var/lib/distsn/user-speed/*
 	-$(RM) $(addprefix $(cgidir)/,$(cgi_binaries))
 
-intialize:
+initialize:
 	$(MKDIR) -p /var/lib/distsn/user-speed
 	$(CHMOD) -R a+rwx /var/lib/distsn
 
