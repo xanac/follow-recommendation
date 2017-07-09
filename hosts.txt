@@ -8,7 +8,7 @@ friends.nico
 # music.pawoo.net [Duplicate]
 mimumedon.com
 horiedon.com
-mstdn18.jp
+# mstdn18.jp [Duplicate]
 kirakiratter.com
 mstdn-workers.com
 otajodon.com
@@ -89,7 +89,7 @@ z-socialgame.mstdn.cloud
 mtgdon.jp
 tegedon.net
 m6n.onsen.tech
-kpopjp.net
+# kpopjp.net [Duplicate]
 boardgame.m.to
 eizodon.jp
 mstdn-kanazawa.jp
@@ -156,5 +156,10 @@ momoclo.social
 siege.rhino.cards
 yamastodon.com
 mstd.tokyo
+
+# 巨大インスタンスは最後に再取得する。
+pawoo.net
+mstdn.jp
+friends.nico
 
 
