@@ -139,7 +139,7 @@ int main (int argc, char **argv)
 
 	cout << "<ol>" << endl;
 	
-	for (unsigned int cn = 0; cn < 1000; cn ++) {
+	for (unsigned int cn = 0; cn < 10000 && cn < users.size (); cn ++) {
 		auto user = users.at (cn);
 		cout
 			<< "<li>"
