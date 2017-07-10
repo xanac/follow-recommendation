@@ -108,6 +108,115 @@ pawoo.net
 mstdn.jp
 friends.nico
 
+# k52.org 登録ユーザー数 100 - 200 位
+# リストはユーザー数が多いものほど上です。
+
+kemonodon.club
+mstdn.studio
+vastodon.com
+fgo.geekdon.jp
+don.fgc.fun
+mstdn.techdrive.top
+recode.macro.tokyo
+mstdn-ff14.jp
+unnerv.jp
+mastdn.jp
+mstdn.fukuoka.jp
+mstdn.oresys.nagoya
+oriwebdon.com
+sns.gdgd.jp.net
+mastodon-startup.org
+mstdn.hyogo.jp
+saigodon.jp
+vkdn.jp
+mbstdn.tokyo
+otogamer.me
+ekimemo.info
+mastodon.noraworld.jp
+mastodon.ingress-enl.jp
+# natudon-fishing.net [duplicate]
+jp-mstdn.com
+pritter.tk
+unityjp-mastodon.tokyo
+hokutodon.co
+precure.ml
+mstdn.voyage
+mstdn-d.info
+mstdn.goziline.com
+mstdn.serv-ops.com
+nijiato.nagoya
+don.chakuriki.net
+julika.jp
+car-mastodon.link
+mammut.red
+training-fitness.fun
+kero.ccsakura.jp
+mastodon.swordlogic.com
+yamastodon.com
+mstdn-bike.net
+mediartodon.net
+xn--zck4ad5f2e.jp
+mastodon.centiworks.com
+now.kibousoft.co.jp
+latedon.sui-hei.net
+mastodos.com
+gunmastodon.com
+mastodon-omoshiro.com
+musicdn.jp
+mstdn.blue
+mikumikudance.cloud
+sakaba.space
+mstdn.uec.tokyo
+fanfare.horse
+wmdon.jp
+vocalomakets.jp
+gadget.inpocket.net
+don.techfeed.io
+yontengop.com
+mastodon.yumulab.org
+vapers.jp
+siege.rhino.cards
+go-newbie.club
+chizai.cafe
+pso2.club
+3dcgdon.net
+babymetal.party
+mstdn.hakai-macaron.com
+biwakodon.com
+kancolle-yokosuka.xyz
+engekidon.net
+games-community.xyz
+fgochiho.vip
+mstdn.sanin.club
+# kemono-friends.masto.host [Duplicate]
+mast.moe
+wowsdon.xyz
+cookdon.com
+shigadon.com
+anime.mstdn.cloud
+yooidon.jp
+mstdn.glorificatio.org
+dartsdon.jp
+donsuke.biz
+mastodon.poker
+mstdn.idolhack.com
+band-mastdn.tokyo
+inari.opencocon.org
+mstdn-babymetal.com
+madomadon.net
+mstdn-off.com
+bms.stoicsounds.jp
+mstdn.i-fromjapan.com
+mstdn.monster-girl.homelinux.net
+pao.moe
+lgbtjcat.com
+admins.mstdn.social
+
+# 巨大インスタンスを再取得する。
+pawoo.net
+mstdn.jp
+friends.nico
+
 # k52.org 新着 2017年6月5日から7月8日
 # リストは古いものが上です。
 
@@ -161,6 +270,7 @@ momoclo.social
 siege.rhino.cards
 yamastodon.com
 mstd.tokyo
+mstdn.niigata.jp
 
 # 巨大インスタンスを再取得する。
 pawoo.net
