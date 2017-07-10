@@ -149,6 +149,24 @@ static void write_storage (FILE *out, map <string, double> memo)
 }
 
 
+static vector <picojson::value> get_timeline (string host)
+{
+	string reply_1 = http_get (string {"https://"} + host + string {"/api/v1/timelines/public?local=true&limit=40"});
+
+	picojson::value json_value;
+	string error = picojson::parse (json_value, reply_1);
+	if (! error.empty ()) {
+		throw (HostException {});
+	}
+	if (! json_value.is <picojson::array> ()) {
+		throw (HostException {});
+	}
+	
+	vector <picojson::value> toots = json_value.get <picojson::array> ();
+	return toots;
+}
+
+
 static void for_host (string host)
 {
 	/* Apply forgetting rate to memo. */
@@ -177,17 +195,7 @@ static void for_host (string host)
 	}
 
 	/* Get timeline. */
-	string reply_1 = http_get (string {"https://"} + host + string {"/api/v1/timelines/public?local=true&limit=40"});
-
-	picojson::value json_value;
-	string error = picojson::parse (json_value, reply_1);
-	if (! error.empty ()) {
-		throw (HostException {});
-	}
-	if (! json_value.is <picojson::array> ()) {
-		throw (HostException {});
-	}
-	const picojson::array & toots = json_value.get <picojson::array> ();
+	vector <picojson::value> toots = get_timeline (host);
 	if (toots.size () != 40) {
 		throw (HostException {});
 	}
