@@ -4,6 +4,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <set>
 #include <algorithm>
 #include "picojson.h"
 
@@ -102,12 +103,12 @@ public:
 int main (int argc, char **argv)
 {
 	string hosts_s = http_get (string {"https://raw.githubusercontent.com/distsn/follow-recommendation/master/hosts.txt"});
-	vector <string>	hosts;
+	set <string> hosts;
 	string host;
 	for (char c: hosts_s) {
 		if (c == '\n') {
 			if (valid_host_name (host)) {
-				hosts.push_back (host);
+				hosts.insert (host);
 			}
 			host.clear ();
 		} else {
@@ -115,7 +116,7 @@ int main (int argc, char **argv)
 		}
 	}
 	if (valid_host_name (host)) {
-		hosts.push_back (host);
+		hosts.insert (host);
 	}
 	
 	vector <User> users;
@@ -139,7 +140,7 @@ int main (int argc, char **argv)
 
 	cout << "[";
 	
-	for (unsigned int cn = 0; cn < 1000; cn ++) {
+	for (unsigned int cn = 0; cn < 10000 && cn < users.size (); cn ++) {
 		if (cn != 0) {
 			cout << ",";
 		}

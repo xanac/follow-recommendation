@@ -33,7 +33,7 @@
 
 # Commands
 distsn-user-speed
-distsn-top1000.cgi
+distsn-user-speed-api.cgi
 distsn-top1000-html.cgi
 
 # Misc
