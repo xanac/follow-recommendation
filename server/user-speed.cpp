@@ -264,6 +264,10 @@ static void for_host (string host)
 		}
 	}
 
+	/* Start time */
+	time_t start_time;
+	time (& start_time);
+
 	/* Get timeline. */
 	vector <picojson::value> toots = get_timeline (host);
 	if (toots.size () < 40) {
@@ -281,7 +285,7 @@ static void for_host (string host)
 		throw (HostException {});
 	}
 
-	double duration = top_time - bottom_time;
+	double duration = max (start_time, top_time) - bottom_time;
 	if (! (1.0 < duration && duration < 60 * 60 * 24 * 365)) {
 		throw (HostException {});
 	}
