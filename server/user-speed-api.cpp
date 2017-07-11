@@ -140,11 +140,14 @@ int main (int argc, char **argv)
 
 	cout << "[";
 	
-	for (unsigned int cn = 0; cn < 10000 && cn < users.size (); cn ++) {
+	for (unsigned int cn = 0; cn < users.size (); cn ++) {
+		auto user = users.at (cn);
+		if (user.speed * 60 * 60 * 24 * 7 < 1.0) {
+			break;
+		}
 		if (cn != 0) {
 			cout << ",";
 		}
-		auto user = users.at (cn);
 		cout
 			<< "{"
 			<< "\"host\":\"" << user.host << "\","
