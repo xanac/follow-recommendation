@@ -5,10 +5,10 @@
 pawoo.net
 mstdn.jp
 friends.nico
-# music.pawoo.net [Duplicate]
+music.pawoo.net
 mimumedon.com
 horiedon.com
-# mstdn18.jp [Duplicate]
+mstdn18.jp
 kirakiratter.com
 mstdn-workers.com
 otajodon.com
@@ -89,7 +89,7 @@ z-socialgame.mstdn.cloud
 mtgdon.jp
 tegedon.net
 m6n.onsen.tech
-# kpopjp.net [Duplicate]
+kpopjp.net
 boardgame.m.to
 eizodon.jp
 mstdn-kanazawa.jp
@@ -103,12 +103,7 @@ oransns.com
 kemonodon.club
 audiophile-mastodon.com
 
-# 巨大インスタンスを再取得する。
-pawoo.net
-mstdn.jp
-friends.nico
-
-# k52.org 登録ユーザー数 100 - 200 位
+# k52.org 登録ユーザー数 101 - 200 位
 # リストはユーザー数が多いものほど上です。
 
 kemonodon.club
@@ -134,7 +129,7 @@ otogamer.me
 ekimemo.info
 mastodon.noraworld.jp
 mastodon.ingress-enl.jp
-# natudon-fishing.net [duplicate]
+natudon-fishing.net
 jp-mstdn.com
 pritter.tk
 unityjp-mastodon.tokyo
@@ -188,7 +183,7 @@ engekidon.net
 games-community.xyz
 fgochiho.vip
 mstdn.sanin.club
-# kemono-friends.masto.host [Duplicate]
+kemono-friends.masto.host
 mast.moe
 wowsdon.xyz
 cookdon.com
@@ -212,10 +207,194 @@ pao.moe
 lgbtjcat.com
 admins.mstdn.social
 
-# 巨大インスタンスを再取得する。
-pawoo.net
-mstdn.jp
-friends.nico
+# k52.org 登録ユーザー数 201 - 300 位
+# リストはユーザー数が多いものほど上です。
+
+tokamstdn.jp
+ifrit.gaia.ff14-mstdn.xyz
+elict.net
+emojidon.global
+mastodon.oita.jp
+momoclo.social
+mstdn.superspeed-fall.com
+mstdn.fun
+dramadon.net
+akitadon.info
+nomlishdon.racing-lagoon.info
+iamastodon.gifu.jp
+mdn.crows.tokyo
+mstdn.golf
+mastodon-robamimi.club
+mastodoll.net
+mstdn.poyo.me
+saitama-stdn.com
+mstdn.okayama.jp
+kirby-fans.com
+mstdn-jp.site
+mstdon.robox.org
+mastodon.wakayama.jp
+rikadon.club
+umastodon.jp
+chofudon.tokyo
+mastodon.medieval.jp
+m.okadajp.org
+mstdn.nere9.help
+kitadon.com
+hamtter.net
+mastodon.sylphid.jp
+himastdon.club
+hsj.life
+catdon.jp
+cyclodon.net
+mstdn.mechkey.jp
+don.akashi.cloud
+mstdn.niigata.jp
+nishinomiya.in.net
+august-don.site
+mastodon.eastback.co.jp
+mastodons.jp
+mastodon.chotto.moe
+mstdn-tech.jp
+pkkm.me
+manhole.club
+urawareds.org
+mastodon.teamblackberry.jp
+moeism.me
+paoru.jp
+mstdn.debate.info-labs.jp
+hakuhodon.com
+bldon.net
+mastodon.machique.st
+mastodon.cloud-ace.jp
+mofu.kemo.no
+shimokita.social
+i-n-t-e-r-n-e-t-2-0-0-0.net
+ngndn.jp
+mastedm.club
+mastodon.hekki.info
+grimoire.kanzakiranko.jp
+mstdn.madpainter.info
+gamejam.site
+m.4ac.me
+mastodon.osaka
+idbt.tv
+nagayodon.com
+sldon.jp
+mastodon.bunkerchan.xyz
+mastodon.toycode.com
+gensou.social
+gingadon.com
+danshudon.jp
+saunner.com
+cosp.la
+mastodon.ts-novels.jp
+mstdn-tw.com
+animefun.jp
+doll.social
+mastodon.motcha.tech
+currydon.com
+dokushodon.life
+xn--zckuao5dze.jp
+aqua-graphic.blue
+chibadon.jp
+myd.kyoto.jp
+podcast.style
+mstdn.omaera.org
+765ml.com
+tsuruga.net
+chorus.space
+keiba.social
+www.ksu-mastodon.com
+nittc.tokyo
+don.rabbit-house.me
+takahashi.social
+gundam.masto.host
+foodon.jp
+
+# k52.org 登録ユーザー数 301 - 400 位
+# リストはユーザー数が多いものほど上です。
+
+newsmastodon.com
+livers.jp
+cos.zone
+mstdn.nagasaki.jp
+super-famicom.com
+friends.tennis
+glamdon.com
+mastodon.paas.jp
+nagoyadon.jp
+mstdn.creatorsnight.com
+scuba.masdon.life
+doshidon.com
+toot.mst-dn.me
+md.jigensha.info
+novelist.nagoya
+mstdn.cc
+mstdn.barippi.com
+matitodon.com
+mastodon.snowandtweet.jp
+m.v.nu
+mstdn.cktec.net
+tvdon.tv
+pochi46.com
+ashikaga.link
+fudanshi.org
+neko.pics
+okadon.m.to
+mastodon.oss.nagoya
+warubure.online
+chibi.kemo.no
+startup-mstdn.com
+sldon.com
+paoon.club
+mstdn-politics.com
+subculdon.com
+mstdn.harusamex.com
+ramendon.jp
+monstodon.info
+everydon.com
+don.tacostea.net
+ranobe.net
+mstdn.misosi.ru
+chitose.moe
+mstdn.trashkids.org
+mstdn.cafe
+mastodon-nagano.info
+astdn.tokyo
+christodon.com
+niigata.minnna.xyz
+trickle.ink
+mstdn-vn.com
+mastodon.jtwp470.net
+mastodon.maromaro.co.jp
+nkmr.paoru.jp
+shimaidon.net
+mstdn.syoriken.org
+mstdncafe.com
+tvdon.rt-trend.jp
+mstdn.web4u.jp
+don.komoro.net
+quizdon.com
+mastdn.com
+iomstdn.tokyo
+msdnaart.net
+haruhi-mstdn.club
+mikado-city.jp
+kmmtn.com
+kerokero.rororo.xyz
+kyureki.jp
+mstdn.asami.red
+toot.blue
+keibadon.com
+claristdon.net
+hige.alterna-cloud.com
+vm.mstdn.media
+pachi.house
+mastdn.lovesaemi.daemon.asia
+mstd.tokyo
+m.sighash.info
+kurage.cc
+mdn.hinaloe.net
 
 # k52.org 新着 2017年6月5日から7月8日
 # リストは古いものが上です。
@@ -271,10 +450,4 @@ siege.rhino.cards
 yamastodon.com
 mstd.tokyo
 mstdn.niigata.jp
-
-# 巨大インスタンスを再取得する。
-pawoo.net
-mstdn.jp
-friends.nico
-
 
