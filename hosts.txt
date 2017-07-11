@@ -5,10 +5,10 @@
 pawoo.net
 mstdn.jp
 friends.nico
-# music.pawoo.net [Duplicate]
+music.pawoo.net
 mimumedon.com
 horiedon.com
-# mstdn18.jp [Duplicate]
+mstdn18.jp
 kirakiratter.com
 mstdn-workers.com
 otajodon.com
@@ -89,7 +89,7 @@ z-socialgame.mstdn.cloud
 mtgdon.jp
 tegedon.net
 m6n.onsen.tech
-# kpopjp.net [Duplicate]
+kpopjp.net
 boardgame.m.to
 eizodon.jp
 mstdn-kanazawa.jp
@@ -102,11 +102,6 @@ mastodon.dqfan.club
 oransns.com
 kemonodon.club
 audiophile-mastodon.com
-
-# 巨大インスタンスを再取得する。
-pawoo.net
-mstdn.jp
-friends.nico
 
 # k52.org 登録ユーザー数 100 - 200 位
 # リストはユーザー数が多いものほど上です。
@@ -134,7 +129,7 @@ otogamer.me
 ekimemo.info
 mastodon.noraworld.jp
 mastodon.ingress-enl.jp
-# natudon-fishing.net [duplicate]
+natudon-fishing.net
 jp-mstdn.com
 pritter.tk
 unityjp-mastodon.tokyo
@@ -188,7 +183,7 @@ engekidon.net
 games-community.xyz
 fgochiho.vip
 mstdn.sanin.club
-# kemono-friends.masto.host [Duplicate]
+kemono-friends.masto.host
 mast.moe
 wowsdon.xyz
 cookdon.com
@@ -211,11 +206,6 @@ mstdn.monster-girl.homelinux.net
 pao.moe
 lgbtjcat.com
 admins.mstdn.social
-
-# 巨大インスタンスを再取得する。
-pawoo.net
-mstdn.jp
-friends.nico
 
 # k52.org 新着 2017年6月5日から7月8日
 # リストは古いものが上です。
@@ -271,10 +261,4 @@ siege.rhino.cards
 yamastodon.com
 mstd.tokyo
 mstdn.niigata.jp
-
-# 巨大インスタンスを再取得する。
-pawoo.net
-mstdn.jp
-friends.nico
-
 
