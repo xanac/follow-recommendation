@@ -4,6 +4,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <sstream>
 #include "picojson.h"
 
 
@@ -84,6 +85,26 @@ static time_t get_time (const picojson::value &toot)
 }
 
 
+static string get_id (const picojson::value &toot)
+{
+	if (! toot.is <picojson::object> ()) {
+		throw (TootException {});
+	}
+	auto properties = toot.get <picojson::object> ();
+	if (properties.find (string {"id"}) == properties.end ()) {
+		throw (TootException {});
+	}
+	auto id_object = properties.at (string {"id"});
+	if (! id_object.is <double> ()) {
+		throw (TootException {});
+	}
+	double id_double = id_object.get <double> ();
+	stringstream s;
+	s << static_cast <unsigned int> (id_double);
+	return s.str ();
+}
+
+
 static string get_username (const picojson::value &toot)
 {
 	if (! toot.is <picojson::object> ()) {
@@ -151,19 +172,57 @@ static void write_storage (FILE *out, map <string, double> memo)
 
 static vector <picojson::value> get_timeline (string host)
 {
-	string reply_1 = http_get (string {"https://"} + host + string {"/api/v1/timelines/public?local=true&limit=40"});
+	vector <picojson::value> timeline;
 
-	picojson::value json_value;
-	string error = picojson::parse (json_value, reply_1);
-	if (! error.empty ()) {
-		throw (HostException {});
+	{
+		string reply = http_get (string {"https://"} + host + string {"/api/v1/timelines/public?local=true&limit=40"});
+
+		picojson::value json_value;
+		string error = picojson::parse (json_value, reply);
+		if (! error.empty ()) {
+			throw (HostException {});
+		}
+		if (! json_value.is <picojson::array> ()) {
+			throw (HostException {});
+		}
+	
+		vector <picojson::value> toots = json_value.get <picojson::array> ();
+		timeline.insert (timeline.end (), toots.begin (), toots.end ());
 	}
-	if (! json_value.is <picojson::array> ()) {
+	
+	if (timeline.size () < 1) {
 		throw (HostException {});
 	}
 	
-	vector <picojson::value> toots = json_value.get <picojson::array> ();
-	return toots;
+	for (; ; ) {
+		time_t top_time = get_time (timeline.front ());
+		time_t bottom_time = get_time (timeline.back ());
+		if (15 * 60 <= top_time - bottom_time) {
+			break;
+		}
+
+		string bottom_id = get_id (timeline.back ());
+		string query
+			= string {"https://"}
+			+ host
+			+ string {"/api/v1/timelines/public?local=true&limit=40&max_id="}
+			+ bottom_id;
+		string reply = http_get (query);
+
+		picojson::value json_value;
+		string error = picojson::parse (json_value, reply);
+		if (! error.empty ()) {
+			throw (HostException {});
+		}
+		if (! json_value.is <picojson::array> ()) {
+			throw (HostException {});
+		}
+	
+		vector <picojson::value> toots = json_value.get <picojson::array> ();
+		timeline.insert (timeline.end (), toots.begin (), toots.end ());
+	}
+
+	return timeline;
 }
 
 
@@ -196,7 +255,7 @@ static void for_host (string host)
 
 	/* Get timeline. */
 	vector <picojson::value> toots = get_timeline (host);
-	if (toots.size () != 40) {
+	if (toots.size () < 40) {
 		throw (HostException {});
 	}
 
