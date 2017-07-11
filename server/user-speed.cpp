@@ -5,6 +5,7 @@
 #include <map>
 #include <vector>
 #include <sstream>
+#include <set>
 #include "picojson.h"
 
 
@@ -332,12 +333,12 @@ static bool valid_host_name (string host)
 int main (int argc, char **argv)
 {
 	string hosts_s = http_get (string {"https://raw.githubusercontent.com/distsn/follow-recommendation/master/hosts.txt"});
-	vector <string>	hosts;
+	set <string> hosts;
 	string host;
 	for (char c: hosts_s) {
 		if (c == '\n') {
 			if (valid_host_name (host)) {
-				hosts.push_back (host);
+				hosts.insert (host);
 			}
 			host.clear ();
 		} else {
@@ -345,7 +346,7 @@ int main (int argc, char **argv)
 		}
 	}
 	if (valid_host_name (host)) {
-		hosts.push_back (host);
+		hosts.insert (host);
 	}
 
 	for (auto host: hosts) {
