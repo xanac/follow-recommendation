@@ -195,13 +195,24 @@ static vector <picojson::value> get_timeline (string host)
 	}
 	
 	for (; ; ) {
-		time_t top_time = get_time (timeline.front ());
-		time_t bottom_time = get_time (timeline.back ());
+		time_t top_time;
+		time_t bottom_time;
+		try {
+			top_time = get_time (timeline.front ());
+			bottom_time = get_time (timeline.back ());
+		} catch (TootException e) {
+			throw (HostException {});
+		}
 		if (15 * 60 <= top_time - bottom_time) {
 			break;
 		}
 
-		string bottom_id = get_id (timeline.back ());
+		string bottom_id;
+		try {
+			bottom_id = get_id (timeline.back ());
+		} catch (TootException e) {
+			throw (HostException {});
+		}
 		string query
 			= string {"https://"}
 			+ host
