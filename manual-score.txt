@@ -1,5 +1,5 @@
 [
-	{"user": "chome@friends.nico", "score": 2},
+	{"user": "chome@friends.nico", "score": 3},
 	{"user": "UN_NERV@unnerv.jp", "score": 0}
 ]
 
