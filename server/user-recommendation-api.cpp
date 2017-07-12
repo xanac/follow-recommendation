@@ -95,8 +95,6 @@ public:
 		host = a_host;
 		username = a_username;
 		speed = a_speed;
-		speed_order = 0;
-		manual_score = 2.0;
 	};
 	bool operator < (const User &right) const {
 		return right.speed < speed;
@@ -133,6 +131,115 @@ static set <string> get_hosts (string hosts_s)
 }
 
 
+class UserException: public exception {
+	/* Nothing. */
+};
+
+
+static string get_host (const picojson::value &user)
+{
+	if (! user.is <picojson::object> ()) {
+		throw (UserException {});
+	}
+	auto properties = user.get <picojson::object> ();
+	if (properties.find (string {"host"}) == properties.end ()) {
+		throw (UserException {});
+	}
+	auto object = properties.at (string {"host"});
+	if (! object.is <string> ()) {
+		throw (UserException {});
+	}
+	return object.get <string> ();
+}
+
+
+static string get_username (const picojson::value &user)
+{
+	if (! user.is <picojson::object> ()) {
+		throw (UserException {});
+	}
+	auto properties = user.get <picojson::object> ();
+	if (properties.find (string {"username"}) == properties.end ()) {
+		throw (UserException {});
+	}
+	auto object = properties.at (string {"username"});
+	if (! object.is <string> ()) {
+		throw (UserException {});
+	}
+	return object.get <string> ();
+}
+
+
+static double get_manual_score (const picojson::value &user)
+{
+	if (! user.is <picojson::object> ()) {
+		throw (UserException {});
+	}
+	auto properties = user.get <picojson::object> ();
+	if (properties.find (string {"score"}) == properties.end ()) {
+		throw (UserException {});
+	}
+	auto object = properties.at (string {"score"});
+	if (! object.is <double> ()) {
+		throw (UserException {});
+	}
+	return object.get <double> ();
+}
+
+
+static map <string, double> get_manual_score (string score_s)
+{
+	map <string, double> score;
+
+	picojson::value json_value;
+	string error = picojson::parse (json_value, score_s);
+	if (! error.empty ()) {
+		cerr << error << endl;
+		return map <string, double> {}; /* Silent error. */
+	}
+	if (! json_value.is <picojson::array> ()) {
+		return map <string, double> {}; /* Silent error. */
+	}
+
+	vector <picojson::value> users = json_value.get <picojson::array> ();
+	
+	for (auto user: users) {
+		try {
+			string host = get_host (user);
+			string user_name = get_username (user);
+			double manual_score = get_manual_score (user);
+			score.insert (pair <string, double> {user_name + string {"@"} + host, manual_score});
+		} catch (UserException e) {
+			/* Do nothing. */
+		}
+	}
+	return score;
+}
+
+
+class byScore {
+public:
+	bool operator () (const User &left, const User &right) const {
+		if (left.manual_score < 2.0) {
+			if (right.manual_score < 2.0) {
+				return
+					right.manual_score < left.manual_score? true:
+					right.manual_score == left.manual_score? false:
+					right.speed < left.speed;
+			} else {
+				return false;
+			}
+		} else {
+			if (right.manual_score < 2.0) {
+				return true;
+			} else {
+				return right.speed * pow (10, right.manual_score) < left.speed * pow (10, left.manual_score);
+			}
+		}
+	};
+};
+
+
 int main (int argc, char **argv)
 {
 	string hosts_s = http_get (string {"https://raw.githubusercontent.com/distsn/follow-recommendation/master/hosts.txt"});
@@ -159,15 +266,30 @@ int main (int argc, char **argv)
 		users.at (cn).speed_order = cn;
 	}
 
+	string score_s = http_get (string {"https://raw.githubusercontent.com/distsn/follow-recommendation/master/manual-score.txt"});
+	map <string, double> score = get_manual_score (score_s);
+
+	for (auto &user: users) {
+		string key = user.username + string {"@"} + user.host;
+		if (score.find (key) == score.end ()) {
+			user.manual_score = 2.0;
+		} else {
+			user.manual_score = score.at (key);
+		}
+	}
+
+	cerr << 501 << endl;
+
+	sort (users.begin (), users.end (), byScore {});
+
+	cerr << 502 << endl;
+
 	cout << "Content-type: application/json" << endl << endl;
 
 	cout << "[";
 	
-	for (unsigned int cn = 0; cn < users.size (); cn ++) {
+	for (unsigned int cn = 0; cn < users.size () && cn < 10000; cn ++) {
 		auto user = users.at (cn);
-		if (user.speed * 60 * 60 * 24 * 7 < 1.0) {
-			break;
-		}
 		if (cn != 0) {
 			cout << ",";
 		}
@@ -176,7 +298,8 @@ int main (int argc, char **argv)
 			<< "\"host\":\"" << user.host << "\","
 			<< "\"username\":\"" << user.username << "\","
 			<< "\"speed\":" << scientific << user.speed << ","
-			<< "\"speed_order\":" << user.speed_order
+			<< "\"speed_order\":" << user.speed_order << ","
+			<< "\"manual_score\":" << user.manual_score
 			<< "}";
 	}
 
