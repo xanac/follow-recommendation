@@ -3,7 +3,7 @@
 
 window.addEventListener ('load', function () {
 	var request = new XMLHttpRequest;
-	request.open ('GET', '/cgi-bin/distsn-user-speed-api.cgi');
+	request.open ('GET', '/cgi-bin/distsn-user-recommendation-api.cgi');
 	request.onload = function () {
 		if (request.readyState === request.DONE) {
 			if (request.status === 200) {
@@ -32,7 +32,10 @@ for (cn = 0; cn < users.length; cn ++) {
 		user.username + '@<wbr>' + user.host +
 		'</a>' +
 		'<br>' +
-		(user.speed * 60 * 60 * 24).toFixed (1) + ' トゥート/日 (' + (cn + 1) + ' 位)' +
+		(user.speed * 60 * 60 * 24).toFixed (1) + ' トゥート/日 (' + (user.speed_order + 1) + ' 位)' +
+		'<br>' +
+		'手動得点 ' + (user.manual_score_available? user.manual_score.toFixed (1): '?') + '&emsp;' +
+		'総合順位 ' + (cn + 1) + ' 位'
 		'</p>';
 	html += user_html;
 }
