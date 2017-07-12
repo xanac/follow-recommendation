@@ -90,6 +90,7 @@ public:
 	double speed;
 	unsigned int speed_order;
 	double manual_score;
+	bool manual_score_available;
 public:
 	User (string a_host, string a_username, double a_speed) {
 		host = a_host;
@@ -273,8 +274,10 @@ int main (int argc, char **argv)
 		string key = user.username + string {"@"} + user.host;
 		if (score.find (key) == score.end ()) {
 			user.manual_score = 2.0;
+			user.manual_score_available = false;
 		} else {
 			user.manual_score = score.at (key);
+			user.manual_score_available = true;
 		}
 	}
 
@@ -299,7 +302,8 @@ int main (int argc, char **argv)
 			<< "\"username\":\"" << user.username << "\","
 			<< "\"speed\":" << scientific << user.speed << ","
 			<< "\"speed_order\":" << user.speed_order << ","
-			<< "\"manual_score\":" << user.manual_score
+			<< "\"manual_score\":" << user.manual_score << ","
+			<< "\"manual_score_available\":" << (user.manual_score_available? "true": "false")
 			<< "}";
 	}
 
