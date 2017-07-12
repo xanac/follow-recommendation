@@ -1,6 +1,6 @@
 [
 	{"host": "friends.nico", "username": "chome", "score": 3},
-	{"host": "unnerv.jp", "username": "UN_NERV", score": 0}
+	{"host": "unnerv.jp", "username": "UN_NERV", "score": 0}
 ]
 
 
