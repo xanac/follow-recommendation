@@ -261,6 +261,16 @@ int main (int argc, char **argv)
 			}
 		}
 	}
+	
+	{
+		vector <User> active_users;
+		for (auto i: users) {
+			if (1.0 <= i.speed * 60 * 60 * 24) {
+				active_users.push_back (i);
+			}
+		}
+		users = active_users;
+	}
 
 	string score_s = http_get (string {"https://raw.githubusercontent.com/distsn/follow-recommendation/master/manual-score.txt"});
 	map <string, double> score = get_manual_score (score_s);
