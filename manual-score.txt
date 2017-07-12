@@ -1,0 +1,6 @@
+[
+	{"user": "chome@friends.nico", "score": 2},
+	{"user": "UN_NERV@unnerv.jp", "score": 0}
+]
+
+
