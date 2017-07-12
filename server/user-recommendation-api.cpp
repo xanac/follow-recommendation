@@ -281,11 +281,7 @@ int main (int argc, char **argv)
 		}
 	}
 
-	cerr << 501 << endl;
-
 	sort (users.begin (), users.end (), byScore {});
-
-	cerr << 502 << endl;
 
 	cout << "Content-type: application/json" << endl << endl;
 
