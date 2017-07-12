@@ -17,8 +17,8 @@ CHMOD = chmod
 
 cgidir = /usr/lib/cgi-bin
 
-objects = user-speed.o user-speed-api.o top1000-html.o
-cgi_binaries = distsn-user-speed-api.cgi distsn-top1000-html.cgi
+objects = user-speed.o user-speed-api.o top1000-html.o user-recommendation-api.o 
+cgi_binaries = distsn-user-speed-api.cgi distsn-top1000-html.cgi distsn-user-recommendation-api.cgi
 cron_binaries = distsn-user-speed
 binaries = $(cgi_binaries) $(cron_binaries)
 
@@ -37,6 +37,9 @@ distsn-user-speed-api.cgi: user-speed-api.o
 
 distsn-top1000-html.cgi: top1000-html.o
 	$(CXX) top1000-html.o -lcurl $(CFLAGS) -o $@
+
+distsn-user-recommendation-api.cgi: user-recommendation-api.o
+	$(CXX) user-recommendation-api.o -lcurl $(CFLAGS) -o $@
 
 install: $(cgi_binaries)
 	$(INSTALL_PROGRAM) $(cgi_binaries) --target-directory=$(cgidir)
