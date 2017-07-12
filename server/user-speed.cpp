@@ -106,6 +106,23 @@ static string get_id (const picojson::value &toot)
 }
 
 
+static bool valid_character (char c)
+{
+	return ('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z') || ('0' <= c && c <= '9') || (c == '_');
+}
+
+
+static bool valid_username (string s)
+{
+	for (auto c: s) {
+		if (! valid_character (c)) {
+			return false;
+		}
+	}
+	return true;
+}
+
+
 static string get_username (const picojson::value &toot)
 {
 	if (! toot.is <picojson::object> ()) {
@@ -128,6 +145,9 @@ static string get_username (const picojson::value &toot)
 		throw (TootException {});
 	}
 	auto username_s = username.get <string> ();
+	if (! valid_username (username_s)) {
+		throw (TootException {});
+	}
 	return username_s;
 }
 
