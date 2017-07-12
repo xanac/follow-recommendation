@@ -26,9 +26,13 @@ for (cn = 0; cn < users.length; cn ++) {
 	user = users [cn];
 	var user_html =
 		'<p>' +
-		user.host + ' ' +
-		user.username + ' ' +
-		user.speed +
+		'<a href="' +
+		'https://' + user.host + '/@' + user.username +
+		'" target="distsn-external-user-profile">' +
+		user.username + '@<wbr>' + user.host +
+		'</a>' +
+		'<br>' +
+		(user.speed * 60 * 60 * 24).toFixed (1) + ' トゥート/日 (' + (cn + 1) + ' 位)' +
 		'</p>';
 	html += user_html;
 }
