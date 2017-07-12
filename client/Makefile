@@ -14,7 +14,8 @@ INSTALL_DATA = $(INSTALL) -m a=r
 MKDIR = mkdir -p
 RMDIR = rmdir
 
-www_files = index.html follow-recommendation.js user-speed.html user-speed.js
+www_files = index.html follow-recommendation.js user-speed.html user-speed.js \
+	kasaikuminkan.jpg
 
 install: $(www_files)
 	$(INSTALL_DATA) $(www_files) --target-directory=$(htmldir)
