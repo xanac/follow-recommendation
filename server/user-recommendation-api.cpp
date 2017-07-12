@@ -91,6 +91,7 @@ public:
 	unsigned int speed_order;
 	double manual_score;
 	bool manual_score_available;
+	unsigned int recommendation_order;
 public:
 	User (string a_host, string a_username, double a_speed) {
 		host = a_host;
@@ -261,12 +262,6 @@ int main (int argc, char **argv)
 		}
 	}
 
-	sort (users.begin (), users.end (), bySpeed {});
-	
-	for (unsigned int cn = 0; cn < users.size (); cn ++) {
-		users.at (cn).speed_order = cn;
-	}
-
 	string score_s = http_get (string {"https://raw.githubusercontent.com/distsn/follow-recommendation/master/manual-score.txt"});
 	map <string, double> score = get_manual_score (score_s);
 
@@ -281,13 +276,23 @@ int main (int argc, char **argv)
 		}
 	}
 
+	sort (users.begin (), users.end (), bySpeed {});
+	
+	for (unsigned int cn = 0; cn < users.size (); cn ++) {
+		users.at (cn).speed_order = cn;
+	}
+
 	sort (users.begin (), users.end (), byScore {});
+
+	for (unsigned int cn = 0; cn < users.size (); cn ++) {
+		users.at (cn).recommendation_order = cn;
+	}
 
 	cout << "Content-type: application/json" << endl << endl;
 
 	cout << "[";
 	
-	for (unsigned int cn = 0; cn < users.size () && cn < 10000; cn ++) {
+	for (unsigned int cn = 0; cn < users.size () && cn < 1000; cn ++) {
 		auto user = users.at (cn);
 		if (cn != 0) {
 			cout << ",";
@@ -299,7 +304,8 @@ int main (int argc, char **argv)
 			<< "\"speed\":" << scientific << user.speed << ","
 			<< "\"speed_order\":" << user.speed_order << ","
 			<< "\"manual_score\":" << user.manual_score << ","
-			<< "\"manual_score_available\":" << (user.manual_score_available? "true": "false")
+			<< "\"manual_score_available\":" << (user.manual_score_available? "true": "false") << ","
+			<< "\"recommendation_order\":" << user.recommendation_order
 			<< "}";
 	}
 
