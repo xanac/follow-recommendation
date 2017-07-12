@@ -1,6 +1,6 @@
 [
 	{"host": "unnerv.jp", "username": "UN_NERV", "score": 0},
-	{"host": "mastodon.robostart.info", "username": "robostart", "score": 0},
+	{"host": "mastodon.robotstart.info", "username": "robotstart", "score": 0},
 	{"host": "friends.nico", "username": "b36", "score": 2},
 	{"host": "friends.nico", "username": "AkishoMK2", "score": 2},
 	{"host": "friends.nico", "username": "USG", "score": 2},
