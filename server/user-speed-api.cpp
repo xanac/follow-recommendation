@@ -265,7 +265,9 @@ int main (int argc, char **argv)
 	{
 		vector <User> active_users;
 		for (auto i: users) {
-			active_users.push_back (i);
+			if (1.0 <= i.speed * 60 * 60 * 24) {
+				active_users.push_back (i);
+			}
 		}
 		users = active_users;
 	}
