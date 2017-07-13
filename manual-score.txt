@@ -1,5 +1,6 @@
 [
 {"host": "friends.nico", "username": "masarakki", "score": 4},
+
 {"host": "botdon.net", "username": "mastonews", "score": 3},
 {"host": "julika.jp", "username": "atie", "score": 3},
 {"host": "friends.nico", "username": "nullkal", "score": 3},
@@ -8,6 +9,7 @@
 {"host": "mstdn.maud.io", "username": "hota", "score": 3},
 {"host": "mstdn.jp", "username": "liberation_furdan", "score": 3},
 {"host": "friends.nico", "username": "edanon", "score": 3},
+
 {"host": "unnerv.jp", "username": "UN_NERV", "score": 0},
 {"host": "mastodon.robotstart.info", "username": "robotstart", "score": 0},
 {"host": "friends.nico", "username": "b36", "score": 2},
@@ -48,5 +50,6 @@
 {"host": "friends.nico", "username": "nouzui", "score": 2},
 {"host": "mstdn.jp", "username": "pompom", "score": 2},
 {"host": "friends.nico", "username": "milk", "score": 2},
+
 {"host": "example.com", "username": "example", "score": 2}
 ]
