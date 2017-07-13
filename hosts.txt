@@ -457,3 +457,4 @@ md.ggtea.org
 mdx.ggtea.org
 mastodon.matcha-soft.com
 home.aqraf.tokyo
+mastodon.home.js4.in
