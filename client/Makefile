@@ -15,7 +15,7 @@ MKDIR = mkdir -p
 RMDIR = rmdir
 
 www_files = index.html follow-recommendation.js user-speed.html user-speed.js \
-	kasaikuminkan.jpg
+	kasaikuminkan.jpg google214b9ca3f27d115d.html
 
 install: $(www_files)
 	$(INSTALL_DATA) $(www_files) --target-directory=$(htmldir)
