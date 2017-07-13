@@ -455,4 +455,5 @@ animefun.jp
 # k52.org に載ってないインスタンス
 md.ggtea.org
 mdx.ggtea.org
-
+mastodon.matcha-soft.com
+home.aqraf.tokyo
