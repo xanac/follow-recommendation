@@ -451,3 +451,6 @@ yamastodon.com
 mstd.tokyo
 mstdn.niigata.jp
 
+# k52.org に載ってないインスタンス
+md.ggtea.org
+mdx.ggtea.org
