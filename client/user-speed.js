@@ -25,7 +25,7 @@ var cn;
 for (cn = 0; cn < users.length; cn ++) {
 	var user;
 	user = users [cn];
-	var score_s = (user.manual_score_available? user.manual_score.toFixed (1): '?');
+	var score_s = (user.manual_score_available? user.manual_score.toFixed (1): '<b style="color: red">?</b>');
 	var user_html =
 		'<p>' +
 		'<a href="' +
