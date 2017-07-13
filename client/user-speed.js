@@ -24,6 +24,7 @@ var cn;
 for (cn = 0; cn < users.length; cn ++) {
 	var user;
 	user = users [cn];
+	var score_s = (user.manual_score_available? user.manual_score.toFixed (1): '?');
 	var user_html =
 		'<p>' +
 		'<a href="' +
@@ -32,14 +33,20 @@ for (cn = 0; cn < users.length; cn ++) {
 		user.username + '@<wbr>' + user.host +
 		'</a>' +
 		'&emsp;' +
-		(user.speed * 60 * 60 * 24).toFixed (1) + ' トゥート/日 (' + (user.speed_order + 1) + ' 位)' +
-		'&emsp;' +
-		'手動得点 ' + (user.manual_score_available? user.manual_score.toFixed (1): '?') + '&emsp;' +
-		'総合順位 ' + (user.recommendation_order + 1) + ' 位'
+		(user.speed * 60 * 60 * 24).toFixed (1) + ' トゥート/日 (' + (user.speed_order + 1) + ' 位)' + '&emsp;' +
+		'手動得点 ' + score_s + '&emsp;' +
+		'総合順位 ' + (user.recommendation_order + 1) + ' 位' +
+		'<br>' +
+		'<small>' + getTemplate (user.host, user.username, score_s) + '</small>' +
 		'</p>';
 	html += user_html;
 }
 placeholder.innerHTML = html;
 } /* function show_users (users) { */
+
+
+function getTemplate (host, username, score) {
+	return '{"host": "' + host + '", "username": "' + username + '", "score": ' + score + '},';
+};
 
 
