@@ -224,7 +224,7 @@ static vector <picojson::value> get_timeline (string host)
 		} catch (TootException e) {
 			throw (HostException {});
 		}
-		if (15 * 60 <= top_time - bottom_time) {
+		if (60 * 60 <= top_time - bottom_time) {
 			break;
 		}
 
@@ -270,7 +270,7 @@ static void for_host (string host)
 		fclose (storage_file_in);
 	}
 
-	const double forgetting_rate = 0.125;
+	const double forgetting_rate = 1.0 / 48.0;
 
 	for (auto &user_memo: memo) {
 		user_memo.second *= (1.0 - forgetting_rate);
