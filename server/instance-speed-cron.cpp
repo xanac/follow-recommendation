@@ -120,6 +120,14 @@ public:
 };
 
 
+class bySpeed {
+public:
+	bool operator () (const Host &left, const Host &right) const {
+		return right.speed < left.speed;
+	};
+};
+
+
 static string escape_json (string in)
 {
 	string out;
@@ -322,6 +330,8 @@ int main (int argc, char **argv)
 			/* Nothing. */
 		}
 	}
+
+	sort (hosts.begin (), hosts.end (), bySpeed {});
 
 	const string storage_filename = string {"/var/lib/distsn/instance-speed/instance-speed.json"};
 	FILE * storage_file_out = fopen (storage_filename.c_str (), "w");
