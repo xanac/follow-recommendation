@@ -17,9 +17,10 @@ CHMOD = chmod
 
 cgidir = /usr/lib/cgi-bin
 
-objects = user-speed.o user-speed-api.o top1000-html.o user-recommendation-api.o 
+objects = user-speed.o user-speed-api.o top1000-html.o user-recommendation-api.o \
+	instance-speed-cron.o
 cgi_binaries = distsn-user-speed-api.cgi distsn-top1000-html.cgi distsn-user-recommendation-api.cgi
-cron_binaries = distsn-user-speed
+cron_binaries = distsn-user-speed distsn-instance-speed-cron
 binaries = $(cgi_binaries) $(cron_binaries)
 
 .SUFFIXES: .cpp .o
@@ -41,6 +42,9 @@ distsn-top1000-html.cgi: top1000-html.o
 distsn-user-recommendation-api.cgi: user-recommendation-api.o
 	$(CXX) user-recommendation-api.o -lcurl $(CFLAGS) -o $@
 
+distsn-instance-speed-cron: instance-speed-cron.o
+	$(CXX) instance-speed-cron.o -lcurl $(CFLAGS) -o $@
+
 install: $(cgi_binaries)
 	$(INSTALL_PROGRAM) $(cgi_binaries) --target-directory=$(cgidir)
 
@@ -49,6 +53,7 @@ uninstall:
 
 initialize:
 	$(MKDIR) -p /var/lib/distsn/user-speed
+	$(MKDIR) -p /var/lib/distsn/instance-speed
 	$(CHMOD) -R a+rwx /var/lib/distsn
 
 refresh:
