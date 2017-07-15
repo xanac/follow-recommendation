@@ -18,7 +18,7 @@ window.addEventListener ('load', function () {
 
 
 function show_users (users) {
-var placeholder = document.getElementById ('placeholder-users');
+var placeholder = document.getElementById ('placeholder');
 var html = '';
 var cn;
 for (cn = 0; cn < users.length; cn ++) {
