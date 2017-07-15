@@ -14,7 +14,10 @@ INSTALL_DATA = $(INSTALL) -m a=r
 MKDIR = mkdir -p
 RMDIR = rmdir
 
-www_files = index.html follow-recommendation.js user-speed.html user-speed.js \
+www_files = \
+	index.html follow-recommendation.js \
+	user-speed.html user-speed.js \
+	instance-speed.html instance-speed.js \
 	fake-mastodon.css \
 	kasaikuminkan.jpg google214b9ca3f27d115d.html
 
