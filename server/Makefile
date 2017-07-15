@@ -1,4 +1,4 @@
-.PHONY: all clean install uninstall initialize refresh
+.PHONY: all clean install uninstall initialize refresh activate-cgi
 
 srcdir = .
 
