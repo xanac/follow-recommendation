@@ -48,7 +48,7 @@ distsn-instance-speed-cron: instance-speed-cron.o
 	$(CXX) instance-speed-cron.o -lcurl $(CFLAGS) -o $@
 
 install: $(cgis)
-	$(INSTALL_PROGRAM) $(cgi_binaries) --target-directory=$(cgidir)
+	$(INSTALL_PROGRAM) $(cgis) --target-directory=$(cgidir)
 
 uninstall:
 	-$(RM) $(addprefix $(cgidir)/,$(cgis))
