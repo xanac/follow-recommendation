@@ -22,6 +22,8 @@ objects = user-speed.o user-speed-api.o top1000-html.o user-recommendation-api.o
 cgi_binaries = distsn-user-speed-api.cgi distsn-top1000-html.cgi distsn-user-recommendation-api.cgi
 cron_binaries = distsn-user-speed distsn-instance-speed-cron
 binaries = $(cgi_binaries) $(cron_binaries)
+cgi_scripts = distsn-instance-speed-api.cgi
+cgis = $(cgi_binaries) $(cgi_scripts)
 
 .SUFFIXES: .cpp .o
 
@@ -45,11 +47,11 @@ distsn-user-recommendation-api.cgi: user-recommendation-api.o
 distsn-instance-speed-cron: instance-speed-cron.o
 	$(CXX) instance-speed-cron.o -lcurl $(CFLAGS) -o $@
 
-install: $(cgi_binaries)
+install: $(cgis)
 	$(INSTALL_PROGRAM) $(cgi_binaries) --target-directory=$(cgidir)
 
 uninstall:
-	-$(RM) $(addprefix $(cgidir)/,$(cgi_binaries))
+	-$(RM) $(addprefix $(cgidir)/,$(cgis))
 
 initialize:
 	$(MKDIR) -p /var/lib/distsn/user-speed
