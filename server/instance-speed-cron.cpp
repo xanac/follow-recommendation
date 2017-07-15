@@ -229,10 +229,6 @@ static string get_host_title (string domain)
 	if (! error.empty ()) {
 		throw (HostException {});
 	}
-	if (! json_value.is <picojson::array> ()) {
-		throw (HostException {});
-	}
-	
 	if (! json_value.is <picojson::object> ()) {
 		throw (HostException {});
 	}
