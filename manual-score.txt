@@ -1,6 +1,7 @@
 [
 {"host": "friends.nico", "username": "masarakki", "score": 4},
 {"host": "botdon.net", "username": "mastonews", "score": 4},
+{"host": "mstdn-workers.com", "username": "ichimori", "score": 4},
 
 {"host": "julika.jp", "username": "atie", "score": 3},
 {"host": "friends.nico", "username": "nullkal", "score": 3},
