@@ -18,11 +18,12 @@ CHMOD = chmod
 cgidir = /usr/lib/cgi-bin
 
 objects = user-speed.o user-speed-api.o top1000-html.o user-recommendation-api.o \
-	instance-speed-cron.o
-cgi_binaries = distsn-user-speed-api.cgi distsn-top1000-html.cgi distsn-user-recommendation-api.cgi
+	instance-speed-cron.o instance-speed-history-api.o
+cgi_binaries = distsn-user-speed-api.cgi distsn-top1000-html.cgi distsn-user-recommendation-api.cgi \
+	distsn-instance-speed-history-api.cgi
 cron_binaries = distsn-user-speed distsn-instance-speed-cron
 binaries = $(cgi_binaries) $(cron_binaries)
-cgi_scripts = distsn-instance-speed-api.cgi
+cgi_scripts = distsn-instance-speed-api.cgi distsn-instance-speed-history-files-api.cgi
 cgis = $(cgi_binaries) $(cgi_scripts)
 
 .SUFFIXES: .cpp .o
@@ -46,6 +47,9 @@ distsn-user-recommendation-api.cgi: user-recommendation-api.o
 
 distsn-instance-speed-cron: instance-speed-cron.o
 	$(CXX) instance-speed-cron.o -lcurl $(CFLAGS) -o $@
+
+distsn-instance-speed-history-api.cgi: instance-speed-history-api.o
+	$(CXX) instance-speed-history-api.o $(CFLAGS) -o $@
 
 install: $(cgis)
 	$(INSTALL_PROGRAM) $(cgis) --target-directory=$(cgidir)
