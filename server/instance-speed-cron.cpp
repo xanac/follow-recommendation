@@ -281,6 +281,16 @@ static Host for_host (string domain)
 	}
 
 	double speed = static_cast <double> (toots.size ()) / duration;
+
+	/* Save history */
+	stringstream now_s;
+	now_s << start_time;
+	string filename = string {"/var/lib/distsn/instance-speed-cron/"} + domain + string {".csv"};
+	FILE *out = fopen (filename.c_str (), "a");
+	if (out != nullptr) {
+		fprintf (out, "\"%s\",\"%e\"\n", now_s.str ().c_str (), speed);
+		fclose (out);
+	}
 	
 	string title;
 	try {

@@ -56,10 +56,13 @@ uninstall:
 initialize:
 	$(MKDIR) -p /var/lib/distsn/user-speed
 	$(MKDIR) -p /var/lib/distsn/instance-speed
+	$(MKDIR) -p /var/lib/distsn/instance-speed-cron
 	$(CHMOD) -R a+rwx /var/lib/distsn
 
 refresh:
 	-$(RM) /var/lib/distsn/user-speed/*
+	-$(RM) /var/lib/distsn/instance-speed/*
+	-$(RM) /var/lib/distsn/instance-speed-cron/*
 
 clean:
 	-$(RM) $(objects) $(binaries)
