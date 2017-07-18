@@ -452,7 +452,37 @@ mstd.tokyo
 mstdn.niigata.jp
 animefun.jp
 
+# free.m.to
+
+metaller.m.to
+nikki.m.to
+sukadon.m.to
+pom.m.to
+awajishima.m.to
+brand-new-tokyo.m.to
+basictomonokai.m.to
+mastoidoljp.m.to
+pdt.m.to
+symphogear-don.m.to
+school.m.to
+muwiter.m.to
+okadon.m.to
+akashiensis.com/
+eizi2002.m.to
+myc.m.to
+tera.m.to
+japanesesake.m.to
+yakitori.m.to
+bukatsuiya.m.to
+hitohako.m.to
+dmp.m.to
+jcpta.m.to
+shadowverdon.m.to
+ypmastodon.m.to
+kkczjpn.m.to
+
 # k52.org に載ってないインスタンス
+
 md.ggtea.org
 mdx.ggtea.org
 mastodon.matcha-soft.com
@@ -461,3 +491,7 @@ mastodon.home.js4.in
 botdon.net
 mastodon.cloud
 flower.afn.social
+
+
+
+
