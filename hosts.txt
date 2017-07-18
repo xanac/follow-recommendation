@@ -460,3 +460,4 @@ home.aqraf.tokyo
 mastodon.home.js4.in
 botdon.net
 mastodon.cloud
+flower.afn.social
