@@ -114,6 +114,11 @@
 {"host": "eletusk.club", "username": "8d6x", "score": 2},
 {"host": "friends.nico", "username": "Nanoleaf25", "score": 2},
 {"host": "friends.nico", "username": "dytoku", "score": 2},
+{"host": "friends.nico", "username": "grynfil", "score": 2},
+{"host": "pawoo.net", "username": "ATX", "score": 2},
+{"host": "pawoo.net", "username": "hanasakikanata", "score": 1},
+{"host": "mstdn.jp", "username": "los", "score": 2},
+{"host": "pawoo.net", "username": "FlandreScarlet", "score": 2},
 
 {"host": "example.com", "username": "example", "score": 2}
 ]
