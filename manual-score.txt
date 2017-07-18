@@ -12,6 +12,7 @@
 {"host": "mstdn-workers.com", "username": "ichimori", "score": 3},
 {"host": "friends.nico", "username": "chiyomaru_chiyono", "score": 3},
 {"host": "mastodon.nara.jp", "username": "savannah_shika", "score": 3},
+{"host": "mstdn.jp", "username": "__himitsu", "score": 3},
 
 {"host": "mstdn.jp", "username": "Reu", "score": 2},
 {"host": "unnerv.jp", "username": "UN_NERV", "score": 0},
