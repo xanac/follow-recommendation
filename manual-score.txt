@@ -14,6 +14,12 @@
 {"host": "mastodon.nara.jp", "username": "savannah_shika", "score": 3},
 {"host": "mstdn.jp", "username": "__himitsu", "score": 3},
 
+{"host": "fx-don.net", "username": "yukimama", "score": 0},
+{"host": "julika.jp", "username": "yukimama", "score": ?},
+{"host": "kabutodon.com", "username": "yukimama", "score": ?},
+{"host": "mstdn.jp", "username": "yukimama", "score": ?},
+{"host": "friends.nico", "username": "yukimama", "score": ?},
+
 {"host": "mstdn.jp", "username": "Reu", "score": 2},
 {"host": "unnerv.jp", "username": "UN_NERV", "score": 0},
 {"host": "mastodon.robotstart.info", "username": "robotstart", "score": 0},
