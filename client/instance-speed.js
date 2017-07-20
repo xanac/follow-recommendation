@@ -35,8 +35,7 @@ for (cn = 0; cn < instances.length; cn ++) {
 	var instance_html =
 		'<p>' +
 		'<a href="' +
-		'https://' + instance.domain + '" ' +
-		'target="distsn-external-instance">' +
+		'instance-preview.html?' + instance.domain + '" target="distsn-instance-preview">' +
 		(instance.title? escapeHtml (instance.title): instance.domain) +
 		'</a>' +
 		'<br>' +

@@ -70,7 +70,7 @@ function show_toot (toot) {
 	html += '<div class="toot">';
 	html += '<a href="' + toot.account.url + '" target="_blank">';
 	html += '<img src="' + toot.account.avatar + '" width="40" height="40">';
-	html += escapeHtml (toot.account.username);
+	html += escapeHtml (toot.account.display_name);
 	html += '</a>';
 	html += '&emsp;';
 	html += '<small>';
