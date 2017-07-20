@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <meta charset="utf8">
 
-<div id="placeholder-instance"></div>
-<div id="placeholder-toots"></div>
+<p><a href="instance-viewer.html">インスタンスのプレビュー</a></p>
+
+<div id="placeholder-instance">ここにインスタンスの説明が表示されます。</div>
+<div id="placeholder-toots">ここにローカルタイムラインが表示されます。</div>
 
 <script>
 window.addEventListener ('load', function () {
 	var domain = window.location.search.replace (/^\?/, '');
 	if (! domain) {
-		alert ('ホスト名が指定されていません。');
+		var responce = prompt ('ドメイン名を入力してください。');
+		if (responce) {
+			window.location.search = '?' + responce;
+		}
 	};
 	get_instance (domain);
 	get_timeline (domain);
