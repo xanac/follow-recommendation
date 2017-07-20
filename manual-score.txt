@@ -126,6 +126,7 @@
 {"host": "mstdn.jp", "username": "los", "score": 2},
 {"host": "pawoo.net", "username": "FlandreScarlet", "score": 2},
 {"host": "kabudon.jp", "username": "e_news", "score": 0},
+{"host": "kabudon.jp", "username": "n_news", "score": 0},
 
 {"host": "example.com", "username": "example", "score": 2}
 ]
