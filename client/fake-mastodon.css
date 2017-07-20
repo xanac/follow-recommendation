@@ -14,3 +14,13 @@ ul > li {
 	margin-bottom: 0.5em;
 }
 
+img.preview {
+	width: 192px;
+	height: 192px;
+	border-color: gray;
+	border-width: thin;
+	border-style: solid;
+	object-fit: cover;
+}
+
+
