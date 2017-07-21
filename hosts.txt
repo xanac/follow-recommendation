@@ -458,6 +458,15 @@ xn--zck4ad5f2e.jp
 mastodon.maromaro.co.jp
 mstdn.sanin.club
 mstdn.web4u.jp
+xmstdn.com
+technologeek.me
+mastodon.2502.net
+charafre.noela.moe
+39sounds.net
+tekkadon.manimani.cc
+mstdn.hanabi-life.net
+kiminona.co
+ftb.moe
 
 # free.m.to
 
