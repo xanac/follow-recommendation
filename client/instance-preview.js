@@ -1,7 +1,7 @@
 window.addEventListener ('load', function () {
 	var domain = window.location.search.replace (/^\?/, '');
 	if (! domain) {
-		var responce = prompt ('ドメイン名を入力してください。');
+		var responce = prompt ('ドメイン名を入力してください。(例: mstdn.jp)');
 		if (responce) {
 			window.location.search = '?' + responce;
 		}
