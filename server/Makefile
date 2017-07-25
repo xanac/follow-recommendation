@@ -23,7 +23,11 @@ cgi_binaries = distsn-user-speed-api.cgi distsn-top1000-html.cgi distsn-user-rec
 	distsn-instance-speed-history-api.cgi
 cron_binaries = distsn-user-speed distsn-instance-speed-cron
 binaries = $(cgi_binaries) $(cron_binaries)
-cgi_scripts = distsn-instance-speed-api.cgi distsn-instance-speed-history-files-api.cgi
+cgi_scripts = \
+	distsn-instance-speed-api.cgi \
+	distsn-instance-speed-history-files-api.cgi \
+	distsn-instance-first-toot-api.cgi
+	
 cgis = $(cgi_binaries) $(cgi_scripts)
 
 .SUFFIXES: .cpp .o
@@ -61,6 +65,7 @@ initialize:
 	$(MKDIR) -p /var/lib/distsn/user-speed
 	$(MKDIR) -p /var/lib/distsn/instance-speed
 	$(MKDIR) -p /var/lib/distsn/instance-speed-cron
+	$(MKDIR) -p /var/lib/distsn/instance-first-toot
 	$(CHMOD) -R a+rwx /var/lib/distsn
 
 refresh:
