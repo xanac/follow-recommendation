@@ -218,72 +218,23 @@ static vector <picojson::value> get_timeline (string host)
 {
 	vector <picojson::value> timeline;
 
-	{
-		string reply = http_get (string {"https://"} + host + string {"/api/v1/timelines/public?local=true&limit=40"});
+	string query
+		= string {"https://"}
+		+ host
+		+ string {"/api/v1/timelines/public?local=true&max_id=20"};
+	string reply = http_get (query);
 
-		picojson::value json_value;
-		string error = picojson::parse (json_value, reply);
-		if (! error.empty ()) {
-			throw (HostException {});
-		}
-		if (! json_value.is <picojson::array> ()) {
-			throw (HostException {});
-		}
-	
-		vector <picojson::value> toots = json_value.get <picojson::array> ();
-		timeline.insert (timeline.end (), toots.begin (), toots.end ());
-	}
-	
-	if (timeline.size () < 1) {
+	picojson::value json_value;
+	string error = picojson::parse (json_value, reply);
+	if (! error.empty ()) {
 		throw (HostException {});
 	}
-	
-	for (; ; ) {
-		time_t top_time;
-		time_t bottom_time;
-		try {
-			top_time = get_time (timeline.front ());
-			bottom_time = get_time (timeline.back ());
-		} catch (TootException e) {
-			throw (HostException {});
-		}
-		if (60 * 60 * 24 * 365 <= top_time - bottom_time) {
-			break;
-		}
-
-		string bottom_id;
-		try {
-			bottom_id = get_id (timeline.back ());
-		} catch (TootException e) {
-			throw (HostException {});
-		}
-		
-		cout << host << " " << bottom_id << endl;;
-		
-		string query
-			= string {"https://"}
-			+ host
-			+ string {"/api/v1/timelines/public?local=true&limit=40&max_id="}
-			+ bottom_id;
-		string reply = http_get (query);
-
-		picojson::value json_value;
-		string error = picojson::parse (json_value, reply);
-		if (! error.empty ()) {
-			break;
-		}
-		if (! json_value.is <picojson::array> ()) {
-			break;
-		}
-		
-		vector <picojson::value> toots = json_value.get <picojson::array> ();
-		if (toots.empty ()) {
-			break;
-		}
-		timeline.insert (timeline.end (), toots.begin (), toots.end ());
+	if (! json_value.is <picojson::array> ()) {
+		throw (HostException {});
 	}
 
-	return timeline;
+	vector <picojson::value> toots = json_value.get <picojson::array> ();
+	return toots;
 }
 
 
