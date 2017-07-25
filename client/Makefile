@@ -20,6 +20,7 @@ www_files = \
 	instance-speed.html instance-speed.js \
 	instance-speed-history.html instance-speed-history.js \
 	instance-preview.html instance-preview.js \
+	instance-new.html instance-new.js \
 	fake-mastodon.css \
 	kasaikuminkan.jpg google214b9ca3f27d115d.html
 
