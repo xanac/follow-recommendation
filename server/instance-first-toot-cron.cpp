@@ -128,11 +128,13 @@ public:
 	string domain;
 	time_t first_toot_time;
 	string first_toot_url;
+	string title;
 public:
-	Host (string a_domain, time_t a_time, string a_url) {
+	Host (string a_domain, time_t a_time, string a_url, string a_title) {
 		domain = a_domain;
 		first_toot_time = a_time;
 		first_toot_url = a_url;
+		title = a_title;
 	};
 };
 
@@ -173,8 +175,8 @@ static void write_storage (FILE *out, vector <Host> hosts)
 		Host host = hosts.at (cn);
 		ostringstream time_s;
 		time_s << host.first_toot_time;
-		fprintf (out, "{\"domain\":\"%s\",\"first_toot_time\":\"%s\",\"first_toot_url\":\"%s\"}",
-			host.domain.c_str (), time_s.str ().c_str (), host.first_toot_url.c_str ());
+		fprintf (out, "{\"domain\":\"%s\",\"first_toot_time\":\"%s\",\"first_toot_url\":\"%s\",\"title\":\"%s\"}",
+			host.domain.c_str (), time_s.str ().c_str (), host.first_toot_url.c_str (), escape_json (host.title).c_str ());
 	}
 	fprintf (out, "]");
 }
@@ -204,6 +206,30 @@ static vector <picojson::value> get_timeline (string host)
 }
 
 
+static string get_host_title (string domain)
+{
+	string reply = http_get (string {"https://"} + domain + string {"/api/v1/instance"});
+
+	picojson::value json_value;
+	string error = picojson::parse (json_value, reply);
+	if (! error.empty ()) {
+		throw (HostException {});
+	}
+	if (! json_value.is <picojson::object> ()) {
+		throw (HostException {});
+	}
+	auto properties = json_value.get <picojson::object> ();
+	if (properties.find (string {"title"}) == properties.end ()) {
+		throw (HostException {});
+	}
+	auto title_object = properties.at (string {"title"});
+	if (! title_object.is <string> ()) {
+		throw (HostException {});
+	}
+	return title_object.get <string> ();
+}
+
+
 static Host for_host (string domain)
 {
 	/* Get timeline. */
@@ -222,7 +248,14 @@ static Host for_host (string domain)
 		throw (HostException {});
 	}
 
-	return Host {domain, bottom_time, bottom_url};
+	string title;
+	try {
+		title = get_host_title (domain);
+	} catch (HostException e) {
+		/* Do nothing. */
+	}
+
+	return Host {domain, bottom_time, bottom_url, title};
 }
 
 

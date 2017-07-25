@@ -36,9 +36,10 @@ for (cn = 0; cn < instances.length; cn ++) {
 		'<p>' +
 		'<a class="headline" href="' +
 		'instance-preview.html?' + instance.domain + '" target="distsn-instance-preview">' +
-		instance.domain +
+		(instance.title? escapeHtml (instance.title): instance.domain) +
 		'</a>' +
 		'<br>' +
+		(instance.title && instance.title !== instance.domain? instance.domain + '<br>': '') +
 		'<a href="' + instance.first_toot_url + '" target="distsn-external-first-toot">' +
 		(new Date (1000 * instance.first_toot_time)) +
 		'</a>' +
