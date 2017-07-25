@@ -34,17 +34,14 @@ for (cn = 0; cn < instances.length; cn ++) {
 	instance = instances [cn];
 	var instance_html =
 		'<p>' +
-		'<a href="' +
+		'<a class="headline" href="' +
 		'instance-preview.html?' + instance.domain + '" target="distsn-instance-preview">' +
-		(instance.title? escapeHtml (instance.title): instance.domain) +
+		instance.domain +
 		'</a>' +
 		'<br>' +
-		(instance.title && instance.title !== instance.domain? instance.domain + '<br>': '') +
-		'<small>' +
 		'<a href="' + instance.first_toot_url + '" target="distsn-external-first-toot">' +
-		(new Date (instance.first_toot_time)) +
+		(new Date (1000 * instance.first_toot_time)) +
 		'</a>' +
-		'</small>' +
 		'</p>';
 	html += instance_html;
 }

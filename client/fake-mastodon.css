@@ -10,6 +10,10 @@ a:visited {color: rgb(70%,60%,80%); }
 	font-size: 120%;
 }
 
+a.headline {
+	font-size: 120%;
+}
+
 ul > li {
 	margin-bottom: 0.5em;
 }
