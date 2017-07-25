@@ -289,8 +289,7 @@ static set <string> get_domains ()
 
 int main (int argc, char **argv)
 {
-	// set <string> domains = get_domains ();
-	set <string> domains = {string {"yakitori.m.to"}, string {"mstdn.maud.io"}};
+	set <string> domains = get_domains ();
 
 	const string storage_filename = string {"/var/lib/distsn/instance-first-toot/instance-first-toot.json"};
 
