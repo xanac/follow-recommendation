@@ -551,7 +551,7 @@ mastodon.kitamurakz.com
 satocc.biz
 mstdn.mochiwasa.xyz
 shintarokurachi.tokyo
-hatabowyou.club
+# hatabowyou.club
 chorus.space
 mstd.tokyo
 gamejam.site
