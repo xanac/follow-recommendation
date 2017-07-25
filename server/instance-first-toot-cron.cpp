@@ -180,40 +180,6 @@ static void write_storage (FILE *out, vector <Host> hosts)
 }
 
 
-static vector <Host> read_storage (FILE *in)
-{
-	string s;
-	for (; ; ) {
-		if (feof (in)) {
-			break;
-		}
-		char b [1024];
-		fgets (b, 1024, in);
-		s += string {b};
-	}
-	picojson::value json_value;
-	picojson::parse (json_value, s);
-	auto object = json_value.get <picojson::array> ();
-	
-	vector <Host> memo;
-	
-	for (auto host: object) {
-		auto properties = host.get <picojson::object> ();
-		auto domain_object = properties.at (string {"domain"});
-		string domain_s = domain_object.get <string> ();
-		auto time_object = properties.at (string {"first_toot_time"});
-		string time_s = time_object.get <string> ();
-		time_t time_value;
-		istringstream {time_s} >> time_value;
-		auto url_object = properties.at (string {"first_toot_url"});
-		string url_s = url_object.get <string> ();
-		memo.push_back (Host (domain_s, time_value, url_s));
-	}
-	
-	return memo;
-}
-
-
 static vector <picojson::value> get_timeline (string host)
 {
 	vector <picojson::value> timeline;
@@ -297,27 +263,14 @@ int main (int argc, char **argv)
 
 	vector <Host> hosts;
 
-	FILE * storage_file_in = fopen (storage_filename.c_str (), "r");
-	if (storage_file_in != nullptr) {
-		hosts = read_storage (storage_file_in);
-		fclose (storage_file_in);
-	}
-
-	set <string> known_domains;
-	for (auto host: hosts) {
-		known_domains.insert (host.domain);
-	}
-
 	for (auto domain: domains) {
-		if (known_domains.find (domain) == known_domains.end ()) {
-			try {
-				Host host = for_host (string {domain});
-				hosts.push_back (host);
-			} catch (HttpException e) {
-				/* Nothing. */
-			} catch (HostException e) {
-				/* Nothing. */
-			}
+		try {
+			Host host = for_host (string {domain});
+			hosts.push_back (host);
+		} catch (HttpException e) {
+			/* Nothing. */
+		} catch (HostException e) {
+			/* Nothing. */
 		}
 	}
 
