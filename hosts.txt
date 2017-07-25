@@ -467,6 +467,11 @@ tekkadon.manimani.cc
 mstdn.hanabi-life.net
 kiminona.co
 ftb.moe
+# mastodon.bunkerchan.xyz [主たる言語が日本語でない]
+mstdn.idolhack.com
+ika.julika.jp
+konkat.jp
+anime.mstdn.cloud
 
 # free.m.to
 
