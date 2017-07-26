@@ -33,7 +33,8 @@ cgi_binaries = \
 cron_binaries = \
 	distsn-user-speed \
 	distsn-instance-speed-cron \
-	distsn-instance-first-toot-cron
+	distsn-instance-first-toot-cron \
+	distsn-user-application-cron
 binaries = $(cgi_binaries) $(cron_binaries)
 cgi_scripts = \
 	distsn-instance-speed-api.cgi \
@@ -70,6 +71,9 @@ distsn-instance-speed-history-api.cgi: instance-speed-history-api.o
 distsn-instance-first-toot-cron: instance-first-toot-cron.o
 	$(CXX) instance-first-toot-cron.o -lcurl $(CFLAGS) -o $@
 
+distsn-user-application-cron: user-application-cron.o
+	$(CXX) user-application-cron.o -lcurl $(CFLAGS) -o $@
+
 install: $(cgis)
 	$(INSTALL_PROGRAM) $(cgis) --target-directory=$(cgidir)
 
@@ -78,6 +82,7 @@ uninstall:
 
 initialize:
 	$(MKDIR) -p /var/lib/distsn/user-speed
+	$(MKDIR) -p /var/lib/distsn/user-application
 	$(MKDIR) -p /var/lib/distsn/instance-speed
 	$(MKDIR) -p /var/lib/distsn/instance-speed-cron
 	$(MKDIR) -p /var/lib/distsn/instance-first-toot
