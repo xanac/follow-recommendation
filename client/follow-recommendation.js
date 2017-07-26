@@ -17,6 +17,14 @@ window.addEventListener ('load', function () {
 }, false); /* window.addEventListener ('load', function () { */
 
 
+function escapeHtml (text) {
+        text = text.replace (/\&/g, '&amp;');
+        text = text.replace (/\</g, '&lt;');
+        text = text.replace (/\>/g, '&gt;');
+        return text;
+};
+
+
 function show_users (users) {
 var placeholder = document.getElementById ('placeholder');
 var html = '';
@@ -35,7 +43,8 @@ for (cn = 0; cn < users.length; cn ++) {
 		(user.speed * 60 * 60 * 24).toFixed (1) + ' トゥート/日 (' + (user.speed_order + 1) + ' 位)' +
 		'<br>' +
 		'手動得点 ' + (user.manual_score_available? user.manual_score.toFixed (1): '?') + '&emsp;' +
-		'総合順位 ' + (user.recommendation_order + 1) + ' 位'
+		'総合順位 ' + (user.recommendation_order + 1) + ' 位' +
+		(user.application? '<br>' + escapeHtml (user.application): '') +
 		'</p>';
 	html += user_html;
 }

@@ -17,6 +17,14 @@ window.addEventListener ('load', function () {
 }, false); /* window.addEventListener ('load', function () { */
 
 
+function escapeHtml (text) {
+        text = text.replace (/\&/g, '&amp;');
+        text = text.replace (/\</g, '&lt;');
+        text = text.replace (/\>/g, '&gt;');
+        return text;
+};
+
+
 function show_users (users) {
 var boilerplate = (window.location.search === '?boilerplate');
 var placeholder = document.getElementById ('placeholder');
@@ -36,7 +44,8 @@ for (cn = 0; cn < users.length; cn ++) {
 		'&emsp;' +
 		(user.speed * 60 * 60 * 24).toFixed (1) + ' トゥート/日 (' + (user.speed_order + 1) + ' 位)' + '&emsp;' +
 		'手動得点 ' + score_s + '&emsp;' +
-		'総合順位 ' + (user.recommendation_order + 1) + ' 位' +
+		'総合順位 ' + (user.recommendation_order + 1) + ' 位' + '&emsp;' +
+		(user.application? escapeHtml (user.application): '') +
 		(boilerplate? '<br>' + '<small>' + getTemplate (user.host, user.username, score_s) + '</small>': '') +
 		'</p>';
 	html += user_html;
