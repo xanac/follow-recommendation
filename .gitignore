@@ -39,6 +39,7 @@ distsn-user-recommendation-api.cgi
 distsn-instance-speed-cron
 distsn-instance-speed-history-api.cgi
 distsn-instance-first-toot-cron
+distsn-user-application-cron
 
 # Misc
 core*
