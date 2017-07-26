@@ -612,6 +612,18 @@ horiedon.com
 mathtod.online
 socialgame.mstdn.cloud
 
+# 九州・沖縄
+
+mstdn.fukuoka.jp
+mstdn.saga.jp
+mstdn.nagasaki.jp
+kmmtn.com
+mastodon.oita.jp
+saigodon.jp
+tegedon.net
+oknwdn.com
+yomidon.okinawa
+
 # その他
 
 md.ggtea.org
