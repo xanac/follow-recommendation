@@ -77,6 +77,10 @@ function show_toot (toot) {
 	html += '<a href="' + toot.url + '" target="_blank">';
 	html += (new Date (toot.created_at));
 	html += '</a>';
+	if (toot.application && toot.application.name) {
+		html += '&emsp;';
+		html += escapeHtml (toot.application.name);
+	}
 	html += '</small>';
 	html += toot.content;
 	var attachments = toot.media_attachments;
