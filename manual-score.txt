@@ -172,6 +172,8 @@
 {"host": "mastodon.cloud", "username": "yushi_shimada", "score": 1},
 {"host": "kabutodon.com", "username": "alps", "score": 0},
 {"host": "mstdn.jp", "username": "koyamtn_tm", "score": 0},
+{"host": "ekimemo.info", "username": "mori", "score": 1},
+{"host": "horiedon.com", "username": "hinoi_i_", "score": 0},
 
 {"host": "example.com", "username": "example", "score": 2}
 ]
