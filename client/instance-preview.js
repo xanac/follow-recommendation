@@ -1,9 +1,9 @@
 window.addEventListener ('load', function () {
 	var domain = window.location.search.replace (/^\?/, '');
 	if (! domain) {
-		var responce = prompt ('ドメイン名を入力してください。(例: mstdn.jp)');
-		if (responce) {
-			window.location.search = '?' + responce;
+		var response = prompt ('ドメイン名を入力してください。(例: mstdn.jp)');
+		if (response) {
+			window.location.search = '?' + response;
 		}
 	};
 	get_instance (domain);
@@ -25,14 +25,14 @@ function get_instance (domain) {
 }
 
 
-function show_instance (responce) {
+function show_instance (response) {
 	var html = '';
 	html += '<h1>';
-	html += '<a href="https://' + responce.uri + '" target="_blank">';
-	html += escapeHtml (responce.title);
+	html += '<a href="https://' + response.uri + '" target="_blank">';
+	html += escapeHtml (response.title);
 	html += '</a>';
 	html += '</h1>';
-	html += responce.description;
+	html += response.description;
 	var placeholder = document.getElementById ('placeholder-instance');
 	placeholder.innerHTML = html;
 };
@@ -53,6 +53,49 @@ function get_timeline (domain) {
 
 
 function show (response) {
+	show_applications (response);
+	show_local_timeline (response);
+};
+
+
+function show_applications (response) {
+	var occupancy = {};
+	for (cn = 0; cn < response.length; cn ++) {
+		var toot = response [cn];
+		if (toot.application && toot.application.name) {
+			var application = toot.application.name;
+			if (occupancy [application]) {
+				occupancy [application] = occupancy [application] + 1;
+			} else {
+				occupancy [application] = 1;
+			}
+		}
+	}
+	var table = [];
+	for (var application in occupancy) {
+		table.push ({'application': application, 'occupancy': occupancy [application]});
+	};
+	table.sort (function (a, b) {return b.occupancy - a.occupancy; });
+	var total = 0;
+	for (var row in table) {
+		total = total + table [row].occupancy;
+	};
+	var html = '';
+	for (var row in table) {
+		html +=
+			'<p>' +
+			escapeHtml (table [row].application) +
+			'<br>' +
+			table [row].occupancy + ' ' +'トゥート' + ' ' +
+			'(' + ((table [row].occupancy / total) * 100).toFixed (1) + ' %)' +
+			'</p>';
+	};
+	var placeholder = document.getElementById ('placeholder-applications');
+	placeholder.innerHTML = html;
+};
+
+
+function show_local_timeline (response) {
 	var html;
 	var cn;
 	html = '';
