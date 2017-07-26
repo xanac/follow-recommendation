@@ -76,10 +76,7 @@ function show_applications (response) {
 		table.push ({'application': application, 'occupancy': occupancy [application]});
 	};
 	table.sort (function (a, b) {return b.occupancy - a.occupancy; });
-	var total = 0;
-	for (var row in table) {
-		total = total + table [row].occupancy;
-	};
+	var total = response.length;
 	var html = '';
 	for (var row in table) {
 		html +=
