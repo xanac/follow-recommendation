@@ -501,6 +501,7 @@ jcpta.m.to
 shadowverdon.m.to
 ypmastodon.m.to
 kkczjpn.m.to
+snusaku.m.to
 
 # mastodon-instance.com 新着順
 # 新しい方が上です。
