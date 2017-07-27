@@ -34,7 +34,6 @@
 # Commands
 distsn-user-speed
 distsn-user-speed-api.cgi
-distsn-top1000-html.cgi
 distsn-user-recommendation-api.cgi
 distsn-instance-speed-cron
 distsn-instance-speed-history-api.cgi

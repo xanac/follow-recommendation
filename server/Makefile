@@ -27,7 +27,6 @@ objects = \
 	instance-first-toot-cron.o
 cgi_binaries = \
 	distsn-user-speed-api.cgi \
-	distsn-top1000-html.cgi \
 	distsn-user-recommendation-api.cgi \
 	distsn-instance-speed-history-api.cgi
 cron_binaries = \
@@ -39,7 +38,8 @@ binaries = $(cgi_binaries) $(cron_binaries)
 cgi_scripts = \
 	distsn-instance-speed-api.cgi \
 	distsn-instance-speed-history-files-api.cgi \
-	distsn-instance-first-toot-api.cgi
+	distsn-instance-first-toot-api.cgi \
+	distsn-top1000-html.cgi
 	
 cgis = $(cgi_binaries) $(cgi_scripts)
 
