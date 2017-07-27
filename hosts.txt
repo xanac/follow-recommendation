@@ -396,7 +396,7 @@ m.sighash.info
 kurage.cc
 mdn.hinaloe.net
 
-# k52.org 新着 2017年6月5日から7月13日
+# k52.org 新着 2017年6月5日以降
 # リストは古いものが上です。
 
 moeism.me
@@ -472,6 +472,8 @@ mstdn.idolhack.com
 ika.julika.jp
 konkat.jp
 anime.mstdn.cloud
+technologeek.me
+mstdn.mini4wd-engineer.com
 
 # free.m.to
 
@@ -506,6 +508,7 @@ snusaku.m.to
 # mastodon-instance.com 新着順
 # 新しい方が上です。
 
+mstdn.miyazaki.jp
 ika.julika.jp
 kiminona.co
 iwatedon.net
