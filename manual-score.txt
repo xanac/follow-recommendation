@@ -175,6 +175,16 @@
 {"host": "ekimemo.info", "username": "mori", "score": 1},
 {"host": "horiedon.com", "username": "hinoi_i_", "score": 0},
 {"host": "friends.nico", "username": "sa5", "score": 4},
+{"host": "friends.nico", "username": "scopedog", "score": 2},
+{"host": "pawoo.net", "username": "bekkome", "score": 2},
+{"host": "mstdn.nere9.help", "username": "ejo090", "score": 3},
+{"host": "mstdn.jp", "username": "oo242casa", "score": 2},
+{"host": "kabudon.jp", "username": "m_news", "score": 0},
+{"host": "mstdn-workers.com", "username": "1_frm01", "score": 2},
+{"host": "pawoo.net", "username": "kaizou_2", "score": 2},
+{"host": "friends.nico", "username": "heavens_sparrow", "score": 2},
+{"host": "mimumedon.com", "username": "Mocke", "score": 2},
+{"host": "otajodon.com", "username": "imhr", "score": 2},
 
 {"host": "example.com", "username": "example", "score": 2}
 ]
