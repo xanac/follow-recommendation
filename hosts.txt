@@ -643,3 +643,5 @@ janogdon.net
 siidon.lab-kadokawa.com
 comm.cx
 party.ochakai.moe
+mstdn.ytgrsua4.net
+
